@@ -3,19 +3,22 @@
 {% load static %}
 
 {% block content %}
-
+<img src="media/portfolio/images/backgroundImage.jpg" style="height:50%; width:100%">
+<div class="container">
 <div class="row justify-content-center my-3">
-  <div class="col-5">
-    <img src="{% static 'portfolio/VernitJain.jpg' %}" class="img-fluid">
-  </div>
+
+  <img src="{% static 'portfolio/VernitJain.jpg' %}" class="img-fluid over-img" style="position:absolute;border-radius:50%; top:15%; height:20%">
+  <span class="font-weight-bold text-center" style="position:absolute; top:35%; color:white;">Vernit Jain is a Java & Python Developer 😊</span>
 </div>
 
-<div class="row justify-content-center mb-3">
+
+
+<!-- <div class="row justify-content-center mb-3">
   <div class="col-md-9 text-center">
     <h1 id="hometext" class="font-weight-bold">Vernit Jain is a Java & Python Developer in Tata Consultancy Services 😊</h1>
   </div>
-</div>
-
+</div> -->
+<div class="hr-sect"><b>Some of my latest work</b></div>
 <h2 class="mt-5">Portfolio</h2>
 <hr>
 <div class="row">
@@ -38,3 +41,4 @@
 </div>
 
 {% endblock %}
+</div>
