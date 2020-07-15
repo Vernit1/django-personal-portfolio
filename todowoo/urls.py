@@ -11,6 +11,7 @@ urlpatterns = [
 
     #Todos
     path('', views.todowoohome, name='todowoohome'),
+    # path('home', views.todowoohome, name='todowoohome'),
     path('current/', views.currenttodos, name='currenttodos'),
     path('completed/', views.completedtodos, name='completedtodos'),
     path('create/', views.createtodo, name='createtodo'),
