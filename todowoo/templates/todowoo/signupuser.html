@@ -10,7 +10,7 @@
         <div class="col-md-5">
             {% if error %}
                 <div class="alert alert-danger" role="alert">
-                    {{ error }}
+                    {{ error | safe }}
                 </div>
             {% endif %}
             <form method="POST">
@@ -28,10 +28,19 @@
                 <div class="form-group">
                     <label for="password1">Password</label>
                     <input type="password" name="password1" class="form-control" id="password1">
+                    <small id="emailidHelp" class="form-text text-muted">Password Policies:
+                      <ul>
+                        <li>Your password can’t be too similar to your other personal information.</li>
+                        <li>Your password must contain at least 8 characters.</li>
+                        <li>Your password can’t be a commonly used password.</li>
+                        <li>Your password can’t be entirely numeric.</li>
+                      </ul>
+                    </small>
                 </div>
                 <div class="form-group">
                     <label for="password2">Confirm Password</label>
                     <input type="password" name="password2" class="form-control" id="password2">
+                    <small id="emailidHelp" class="form-text text-muted">Password and confirm password should match</small>
                 </div>
                 <button type="submit" class="btn btn-primary">Sign Up</button>
             </form>

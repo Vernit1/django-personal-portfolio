@@ -17,19 +17,22 @@ def signupuser(request):
         return render(request, 'todowoo/signupuser.html', {'form':UserCreationForm()})
     else:
         emailId = request.POST['emailid'].strip()
+        password1 = request.POST['password1'].strip()
         print(emailId)
         try:
             if emailId == "":
                 return render(request, 'todowoo/signupuser.html', {'form':UserCreationForm(), 'error':"Email id can't be blank!"})
-            # validate_email(request.emailid)
-            # print("Asdassadas")
-            # print(User.objects.filter(email=request.POST['emailid']).exist())
-            # if User.objects.filter(email=request.POST['emailid']).exist():
-            #     return render(request, 'todo/signupuser.html', {'form':UserCreationForm(), 'error':'Email id is already exists'})
+            validate_email(emailId)
         except:
             return render(request, 'todowoo/signupuser.html', {'form':UserCreationForm(), 'error':'Email format is not correct!'})
+
         if request.POST['password1'] == request.POST['password2']:
             #Create a new user
+            try:
+                validate_password(password1)
+            except:
+                return render(request, 'todowoo/signupuser.html', {'form':UserCreationForm(), 'error':'Password should meet the policy creteria!<ul><li>Your password can’t be too similar to your other personal information.</li><li>Your password must contain at least 8 characters.</li><li>Your password can’t be a commonly used password.</li><li>Your password can’t be entirely numeric.</li></ul>'})
+
             try:
                 user = User.objects.create_user(request.POST['username'],emailId, password=request.POST['password1'])
                 user.save()
@@ -37,6 +40,7 @@ def signupuser(request):
                 return redirect('todowoo:currenttodos')
             except IntegrityError:
                 return render(request, 'todowoo/signupuser.html', {'form':UserCreationForm(), 'error':'User name is not available, please try with another user name'})
+
         else:
             return render(request, 'todowoo/signupuser.html', {'form':UserCreationForm(), 'error':'Passwords did not match'})
 
@@ -48,7 +52,7 @@ def currenttodos(request):
 def logoutuser(request):
     if request.method=="POST":
         logout(request)
-        return redirect('todowoo:login')
+        return redirect('todowoo:loginuser')
 
 def loginuser(request):
     # try:
