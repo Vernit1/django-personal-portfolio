@@ -8,6 +8,7 @@ from .models import Todo
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
 from django.core.validators import validate_email
+from django.contrib.auth.password_validation import validate_password
 
 def todowoohome(request):
     return render(request, 'todowoo/todowoohome.html')
@@ -16,9 +17,13 @@ def signupuser(request):
     if request.method == 'GET':
         return render(request, 'todowoo/signupuser.html', {'form':UserCreationForm()})
     else:
+        username = request.POST['username'].strip()
         emailId = request.POST['emailid'].strip()
         password1 = request.POST['password1'].strip()
+        password2 = request.POST['password2'].strip()
         print(emailId)
+        print(password1)
+        #checking the email validation
         try:
             if emailId == "":
                 return render(request, 'todowoo/signupuser.html', {'form':UserCreationForm(), 'error':"Email id can't be blank!"})
@@ -27,20 +32,20 @@ def signupuser(request):
             return render(request, 'todowoo/signupuser.html', {'form':UserCreationForm(), 'error':'Email format is not correct!'})
 
         if request.POST['password1'] == request.POST['password2']:
+            #Checking the password validation
+            try:
+                a = validate_password(password = password1, user=username)
+                print(a)
+            except :
+                return render(request, 'todowoo/signupuser.html', {'form':UserCreationForm(), 'error':'Password should meet the policy creteria!<ul><li>Your password can’t be too similar to your other personal information.</li><li>Your password must contain at least 8 characters.</li><li>Your password can’t be a commonly used password.</li><li>Your password can’t be entirely numeric.</li></ul>'})
             #Create a new user
             try:
-                validate_password(password1)
-            except:
-                return render(request, 'todowoo/signupuser.html', {'form':UserCreationForm(), 'error':'Password should meet the policy creteria!<ul><li>Your password can’t be too similar to your other personal information.</li><li>Your password must contain at least 8 characters.</li><li>Your password can’t be a commonly used password.</li><li>Your password can’t be entirely numeric.</li></ul>'})
-
-            try:
-                user = User.objects.create_user(request.POST['username'],emailId, password=request.POST['password1'])
+                user = User.objects.create_user(username,emailId, password=password1)
                 user.save()
                 login(request, user)
                 return redirect('todowoo:currenttodos')
             except IntegrityError:
                 return render(request, 'todowoo/signupuser.html', {'form':UserCreationForm(), 'error':'User name is not available, please try with another user name'})
-
         else:
             return render(request, 'todowoo/signupuser.html', {'form':UserCreationForm(), 'error':'Passwords did not match'})
 
