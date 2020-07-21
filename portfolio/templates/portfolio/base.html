@@ -10,21 +10,20 @@
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-  <link rel="stylesheet" href="{% static "portfolio/custom.css" %}">
+  <link rel="stylesheet" href="{% static "portfolio/css/custom.css" %}">
 
   <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
 
-  <link rel="icon" type="image/png" href="{% static "portfolio/Logo.png" %}">
+  <link rel="icon" type="image/png" href="{% static "portfolio/img/Logo.png" %}">
 
   <title>Vernit Jain</title>
 </head>
 
 <body>
-
   <nav id="topNav" class="navbar navbar-expand-md navbar-dark bg-dark" >
     <div class="container">
       <a class="navbar-brand" href="{% url 'home' %}">
-        <img src="{% static 'portfolio/Logo.png' %}" width="30" height="30" class="d-inline-block align-top" alt="Vernit's Logo">
+        <img src="{% static 'portfolio/img/Logo.png' %}" width="30" height="30" class="d-inline-block align-top" alt="Vernit's Logo">
         <span >Vernit Jain</span>
       </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -34,24 +33,24 @@
         <ul class="navbar-nav ml-auto">
           <li>
           <li class="nav-item">
-            <a class="nav-link" href="{% static 'portfolio/VernitJainResume.pdf' %}", target="_blank">CV</a>
+            <a class="nav-link" href="{% static 'portfolio/file/VernitJainResume.pdf' %}", target="_blank">CV</a>
           </li>
           <li>
             <a class="nav-link" href="{% url 'blog:all_blogs' %}" target="_blank">Blog</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="https://www.linkedin.com/in/vernit-jain-480226a2/" target="_blank">
-              <img src="{% static 'portfolio/linkedin1.png' %}" width="30" height="30" class="d-inline-block align-top" alt="linkedin">
+              <img src="{% static 'portfolio/img/linkedin.png' %}" width="30" height="30" class="d-inline-block align-top" alt="linkedin">
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="https://twitter.com/JainVernit?s=09" target="_blank">
-              <img src="{% static 'portfolio/twitter1.png' %}" width="30" height="30" class="d-inline-block align-top" alt="twitter">
+              <img src="{% static 'portfolio/img/twitter.png' %}" width="30" height="30" class="d-inline-block align-top" alt="twitter">
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="https://www.instagram.com/vernit_jain_0108/" target="_blank">
-              <img src="{% static 'portfolio/Instagram.png' %}" width="30" height="30" class="d-inline-block align-top" alt="instagram">
+              <img src="{% static 'portfolio/img/Instagram.png' %}" width="30" height="30" class="d-inline-block align-top" alt="instagram">
             </a>
           </li>
         </ul>
