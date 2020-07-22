@@ -27,3 +27,12 @@ class About(models.Model):
 
     def __str__(self):
         return "About - Vernit"
+
+class ContactForm(models.Model):
+    contactName = models.CharField(max_length=50)
+    contactEmail = models.EmailField()
+    subject = models.CharField(max_length=50)
+    content = models.TextField()
+
+    def __str__(self):
+        return self.contactEmail
