@@ -11,3 +11,6 @@ def aboutme(request):
 def moreabout(request):
     abouts = About.objects.all()
     return render(request, 'portfolio/moreabout.html', {'abouts':abouts})
+
+def contactme(request):
+    return render(request, 'portfolio/contact.html')

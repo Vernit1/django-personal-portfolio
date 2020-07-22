@@ -14,6 +14,8 @@ def todowoohome(request):
     return render(request, 'todowoo/todowoohome.html')
 
 def signupuser(request):
+    if request.user.is_authenticated:
+        return redirect('todowoo:currenttodos')
     if request.method == 'GET':
         return render(request, 'todowoo/signupuser.html', {'form':UserCreationForm()})
     else:
@@ -23,6 +25,8 @@ def signupuser(request):
         password2 = request.POST['password2'].strip()
         print(emailId)
         print(password1)
+        if username == "":
+            return render(request, 'todowoo/signupuser.html', {'form':UserCreationForm(), 'error':"User name can't be blank!"})
         #checking the email validation
         try:
             if emailId == "":
@@ -60,10 +64,8 @@ def logoutuser(request):
         return redirect('todowoo:loginuser')
 
 def loginuser(request):
-    # try:
-    #     request.user.is_authenticated()
-    #     return redirect('currenttodos')
-    # except TypeError:
+    if request.user.is_authenticated:
+        return redirect('todowoo:currenttodos')
     if request.method == 'GET':
         return render(request, 'todowoo/loginuser.html', {'form':AuthenticationForm()})
     else:

@@ -24,6 +24,7 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('about/', views.aboutme, name='aboutme'),
     path('moreabout/', views.moreabout, name='moreabout'),
+    path('contactme/', views.contactme, name='contactme'),
     path('blog/', include('blog.urls')),
     path('todowoo/', include('todowoo.urls'))
 ]
