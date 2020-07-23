@@ -4,6 +4,7 @@
 <head>
   {% load static %}
     <meta charset="utf-8">
+    <link rel="icon" type="image/png" href="{% static "portfolio/img/Logo.png" %}">
     <title>About - Vernit Jain</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -14,9 +15,9 @@
 
     <!-- Template CSS Files -->
     <link href="{% static 'portfolio/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'portfolio/css/custom.css' %}" rel="stylesheet">
     <link href="{% static 'portfolio/css/preloader.min.css' %}" rel="stylesheet">
     <link href="{% static 'portfolio/css/circle.css' %}" rel="stylesheet">
-    <!-- <link href="{% static 'portfolio/css/font-awesome.min.css' %}" rel="stylesheet"> -->
     <link href="{% static 'portfolio/css/fm.revealator.jquery.min.css' %}" rel="stylesheet">
     <link href="{% static 'portfolio/css/style.css' %}" rel="stylesheet">
 
@@ -80,7 +81,7 @@
         <div id="hideSwitcher">&times;</div>
     </div>
 </div>
-<div id="showSwitcher" class="styleSecondColor"><i class="fa fa-cog fa-spin"></i></div>
+<!-- <div id="showSwitcher" class="styleSecondColor"><i class="fa fa-cog fa-spin"></i></div> -->
 <!-- Live Style Switcher Ends - demo only -->
 <!-- Header Starts -->
 <header class="header" id="navbar-collapse-toggle">
@@ -88,7 +89,7 @@
     <ul class="icon-menu d-none d-lg-block revealator-slideup revealator-once revealator-delay1">
       <li class="icon-box active">
           <i class="fa fa-home"></i>
-          <a href="#">
+          <a href="{% url 'aboutme' %}">
               <h2>Home</h2>
           </a>
       </li>
@@ -99,15 +100,21 @@
           </a>
       </li>
       <li class="icon-box">
-          <i class="fa fa-briefcase"></i>
-          <a href="{% url 'home' %}">
-              <h2>Portfolio</h2>
+          <i class="fa fa-key"></i>
+          <a href="{% url 'moreabout' %}#skills">
+              <h2>Skills</h2>
           </a>
       </li>
       <li class="icon-box">
           <i class="fa fa-envelope-open"></i>
           <a href="{% url 'contactme' %}">
               <h2>Contact</h2>
+          </a>
+      </li>
+      <li class="icon-box">
+          <i class="fa fa-tasks"></i>
+          <a href="{% url 'moreabout' %}#projects">
+              <h2>Projects</h2>
           </a>
       </li>
       <li class="icon-box">
@@ -126,9 +133,9 @@
             <span></span>
             <span></span>
             <ul class="list-unstyled" id="menu">
-              <li><a href="#"><i class="fa fa-home"></i><span>Home</span></a></li>
+              <li><a href="{% url 'aboutme' %}"><i class="fa fa-home"></i><span>Home</span></a></li>
               <li class="active"><a href="{% url 'moreabout' %}"><i class="fa fa-user"></i><span>About</span></a></li>
-              <li><a href="{% url 'home' %}"><i class="fa fa-folder-open"></i><span>Portfolio</span></a></li>
+              <li><a href="{% url 'moreabout' %}#skills"><i class="fa fa-key"></i><span>Skills</span></a></li>
               <li><a href="{% url 'contactme' %}"><i class="fa fa-envelope-open"></i><span>Contact</span></a></li>
               <li><a href="{% url 'blog:all_blogs' %}"><i class="fa fa-comments"></i><span>Blog</span></a></li>
             </ul>
@@ -285,13 +292,53 @@
         </div>
         <hr class="separator">
         <!-- Skills Starts -->
-        <div class="row">
+        <div class="row" id="skills">
             <div class="col-12">
                 <h3 class="text-uppercase pb-4 pb-sm-5 mb-3 mb-sm-0 text-left text-sm-center custom-title ft-wt-600">My Skills</h3>
             </div>
             <div class="col-6 col-md-3 mb-3 mb-sm-5">
-                <div class="c100 p25">
-                    <span>25%</span>
+                <div class="c100 p90">
+                    <span>90%</span>
+                    <div class="slice">
+                        <div class="bar"></div>
+                        <div class="fill"></div>
+                    </div>
+                </div>
+                <h6 class="text-uppercase open-sans-font text-center mt-2 mt-sm-4">Python Basics</h6>
+            </div>
+            <div class="col-6 col-md-3 mb-3 mb-sm-5">
+                <div class="c100 p80">
+                    <span>80%</span>
+                    <div class="slice">
+                        <div class="bar"></div>
+                        <div class="fill"></div>
+                    </div>
+                </div>
+                <h6 class="text-uppercase open-sans-font text-center mt-2 mt-sm-4">Django</h6>
+            </div>
+            <div class="col-6 col-md-3 mb-3 mb-sm-5">
+                <div class="c100 p45">
+                    <span>45%</span>
+                    <div class="slice">
+                        <div class="bar"></div>
+                        <div class="fill"></div>
+                    </div>
+                </div>
+                <h6 class="text-uppercase open-sans-font text-center mt-2 mt-sm-4">react</h6>
+            </div>
+            <div class="col-6 col-md-3 mb-3 mb-sm-5">
+                <div class="c100 p80">
+                    <span>80%</span>
+                    <div class="slice">
+                        <div class="bar"></div>
+                        <div class="fill"></div>
+                    </div>
+                </div>
+                <h6 class="text-uppercase open-sans-font text-center mt-2 mt-sm-4">java</h6>
+            </div>
+            <div class="col-6 col-md-3 mb-3 mb-sm-5">
+                <div class="c100 p75">
+                    <span>75%</span>
                     <div class="slice">
                         <div class="bar"></div>
                         <div class="fill"></div>
@@ -320,26 +367,6 @@
                 <h6 class="text-uppercase open-sans-font text-center mt-2 mt-sm-4">css</h6>
             </div>
             <div class="col-6 col-md-3 mb-3 mb-sm-5">
-                <div class="c100 p80">
-                    <span>80%</span>
-                    <div class="slice">
-                        <div class="bar"></div>
-                        <div class="fill"></div>
-                    </div>
-                </div>
-                <h6 class="text-uppercase open-sans-font text-center mt-2 mt-sm-4">Django</h6>
-            </div>
-            <div class="col-6 col-md-3 mb-3 mb-sm-5">
-                <div class="c100 p85">
-                    <span>85%</span>
-                    <div class="slice">
-                        <div class="bar"></div>
-                        <div class="fill"></div>
-                    </div>
-                </div>
-                <h6 class="text-uppercase open-sans-font text-center mt-2 mt-sm-4">Python Basics</h6>
-            </div>
-            <div class="col-6 col-md-3 mb-3 mb-sm-5">
                 <div class="c100 p50">
                     <span>50%</span>
                     <div class="slice">
@@ -349,29 +376,34 @@
                 </div>
                 <h6 class="text-uppercase open-sans-font text-center mt-2 mt-sm-4">jquery</h6>
             </div>
-            <div class="col-6 col-md-3 mb-3 mb-sm-5">
-                <div class="c100 p40">
-                    <span>40%</span>
-                    <div class="slice">
-                        <div class="bar"></div>
-                        <div class="fill"></div>
-                    </div>
-                </div>
-                <h6 class="text-uppercase open-sans-font text-center mt-2 mt-sm-4">angular</h6>
-            </div>
-            <div class="col-6 col-md-3 mb-3 mb-sm-5">
-                <div class="c100 p45">
-                    <span>45%</span>
-                    <div class="slice">
-                        <div class="bar"></div>
-                        <div class="fill"></div>
-                    </div>
-                </div>
-                <h6 class="text-uppercase open-sans-font text-center mt-2 mt-sm-4">react</h6>
-            </div>
         </div>
         <!-- Skills Ends -->
         <hr class="separator mt-1">
+        <!-- Project starts -->
+        <div class="row" id="projects" style="border:10px">
+            <div class="col-12">
+                <h3 class="text-uppercase pb-4 pb-sm-5 mb-3 mb-sm-0 text-left text-sm-center custom-title ft-wt-600">My Projects</h3>
+            </div>
+            {% for project in projects %}
+
+              <div class="col-lg-4 col-md-6">
+                {% if project.url %}
+                <a href="{{ project.url }}">
+                  <img src="{{ project.images.url }}" class="img-fluid mb-2 projectBorder">
+                </a>
+                {% else %}
+
+                <img src="{{ project.images.url }}" class="img-fluid mb-2">
+                {% endif %}
+                <div class="container">
+                  <h3>{{ project.title }}</h3>
+                  <p>{{ project.description }}</p>
+                </div>
+              </div>
+            {% endfor %}
+        </div>
+        <!-- Project end -->
+          <hr class="separator mt-1">
         <!-- Experience & Education Starts -->
         <!-- <div class="row">
             <div class="col-12">

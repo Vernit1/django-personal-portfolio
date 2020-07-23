@@ -11,8 +11,9 @@ def aboutme(request):
     return render(request, 'portfolio/aboutme.html')
 
 def moreabout(request):
+    projects = Project.objects.all()
     abouts = About.objects.all()
-    return render(request, 'portfolio/moreabout.html', {'abouts':abouts})
+    return render(request, 'portfolio/moreabout.html', {'abouts':abouts, 'projects':projects})
 
 def contactme(request):
     if request.method=="GET":

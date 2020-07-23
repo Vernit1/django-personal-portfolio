@@ -20,8 +20,8 @@ from django.conf import settings
 from portfolio import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', views.home, name='home'),
+    path('dotesting/', admin.site.urls),
+    path('', views.aboutme, name='aboutme'),
     path('about/', views.aboutme, name='aboutme'),
     path('moreabout/', views.moreabout, name='moreabout'),
     path('contactme/', views.contactme, name='contactme'),

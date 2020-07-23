@@ -23,20 +23,25 @@ def signupuser(request):
         emailId = request.POST['emailid'].strip()
         password1 = request.POST['password1'].strip()
         password2 = request.POST['password2'].strip()
-        print(emailId)
-        print(password1)
+
+        #checking the username validation
         if username == "":
             return render(request, 'todowoo/signupuser.html', {'form':UserCreationForm(), 'error':"User name can't be blank!"})
-        #checking the email validation
-        try:
-            if emailId == "":
-                return render(request, 'todowoo/signupuser.html', {'form':UserCreationForm(), 'error':"Email id can't be blank!"})
-            validate_email(emailId)
-        except:
-            return render(request, 'todowoo/signupuser.html', {'form':UserCreationForm(), 'error':'Email format is not correct!'})
 
+        #checking the email validation
+        if emailId == "":
+            return render(request, 'todowoo/signupuser.html', {'form':UserCreationForm(), 'error':"Email id can't be blank!"})
+        try:
+            user = User.objects.get(email=emailId)
+            return render(request, 'todowoo/signupuser.html', {'form':UserCreationForm(), 'error':'This id is already registered, please try login!'})
+        except:
+            try:
+                validate_email(emailId)
+            except:
+                return render(request, 'todowoo/signupuser.html', {'form':UserCreationForm(), 'error':'Email format is not correct!'})
+
+        #checking the password validation
         if request.POST['password1'] == request.POST['password2']:
-            #Checking the password validation
             try:
                 a = validate_password(password = password1, user=username)
                 print(a)
