@@ -1,0 +1,8 @@
+Dear Vernit,
+
+{{ content|safe|striptags }}
+
+Thank You
+Warm Regards
+{{ contactname }}
+{{ contactemail }}

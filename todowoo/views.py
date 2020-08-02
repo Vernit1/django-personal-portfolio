@@ -3,8 +3,8 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 from django.db import IntegrityError
 from django.contrib.auth import login, logout, authenticate
-from .forms import TodoForm
-from .models import Todo
+from .forms import TodoForm, FileUploadForm
+from .models import Todo, FileUpload
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
 from django.core.validators import validate_email
@@ -91,6 +91,14 @@ def createtodo(request):
             newtodo = form.save(commit=False)
             newtodo.user = request.user
             newtodo.save()
+
+            fileform = FileUploadForm(request.POST, request.FILES)
+            newfile = fileform.save(commit=False)
+            newfile.todoid = newtodo.id
+            newfile.user = request.user
+            fileform.save()
+
+
             return redirect('todowoo:currenttodos')
         except ValueError:
             return render(request, 'todowoo/createtodo.html', {'form':TodoForm(), 'error':'Bad data passed in, Try again'})
@@ -98,13 +106,23 @@ def createtodo(request):
 @login_required
 def viewtodo(request, todo_pk):
     todo = get_object_or_404(Todo, pk = todo_pk, user=request.user, deleteTodoOrNot = False)
+    fileforms = FileUpload.objects.filter(user = request.user, todoid = todo_pk)
     if request.method=="GET":
         form = TodoForm(instance = todo)
-        return render(request, 'todowoo/viewtodo.html',{'todo': todo, 'form':form})
+        # Todo.objects.filter(user = request.user, datecompleted__isnull = False, deleteTodoOrNot = False).order_by('-datecompleted')
+
+        return render(request, 'todowoo/viewtodo.html',{'todo': todo, 'form':form, 'fileforms':fileforms})
     else:
         try:
             form=TodoForm(request.POST, instance=todo)
             form.save()
+
+            fileform = FileUploadForm(request.POST, request.FILES)
+            newfile = fileform.save(commit=False)
+            newfile.todoid = todo_pk
+            newfile.user = request.user
+            fileform.save()
+
             return redirect('todowoo:currenttodos')
         except ValueError:
             return render(request, 'todowoo/viewtodo.html',{'todo': todo, 'form':form, 'error': 'Bad info passed in, try again'})

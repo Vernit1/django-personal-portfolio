@@ -17,18 +17,18 @@
                 {% csrf_token %}
                 <div class="form-group">
                     <label for="username">Username</label>
-                    <input type="text" name="username" class="form-control" id="username" aria-describedby="usernameHelp">
+                    <input type="text" name="username" class="form-control" id="username" aria-describedby="usernameHelp" required>
                     <small id="usernameHelp" class="form-text text-muted">Your username must be unique. We'll let you know if someone has taken it already.</small>
                 </div>
                 <div class="form-group">
                     <label for="emailid">Email Id</label>
-                    <input type="email" name="emailid" class="form-control" id="emailid" aria-describedby="emailidHelp">
+                    <input type="email" name="emailid" class="form-control" id="emailid" aria-describedby="emailidHelp" required>
                     <small id="emailidHelp" class="form-text text-muted">Your Email must be unique. We'll let you know if you have already registered with this id</small>
                 </div>
                 <div class="form-group">
                     <label for="password1">Password</label>
-                    <input type="password" name="password1" class="form-control" id="password1">
-                    <small id="emailidHelp" class="form-text text-muted">Password Policies:
+                    <input type="password" name="password1" class="form-control" id="password1" required>
+                    <small id="passwordHelp" class="form-text text-muted">Password Policies:
                       <ul>
                         <li>Your password can’t be too similar to your other personal information.</li>
                         <li>Your password must contain at least 8 characters.</li>
@@ -39,8 +39,8 @@
                 </div>
                 <div class="form-group">
                     <label for="password2">Confirm Password</label>
-                    <input type="password" name="password2" class="form-control" id="password2">
-                    <small id="emailidHelp" class="form-text text-muted">Password and confirm password should match</small>
+                    <input type="password" name="password2" class="form-control" id="password2" required>
+                    <small id="passwordHelp" class="form-text text-muted">Password and confirm password should match</small>
                 </div>
                 <button type="submit" class="btn btn-primary">Sign Up</button>
             </form>

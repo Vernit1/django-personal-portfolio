@@ -3,7 +3,7 @@
 {% block content %}
     <div class="row justify-content-center mt-5">
         <div class="col-md-5">
-            <h2>New Todo</h2>
+            <h2>View or change Todo</h2>
         </div>
     </div>
     <div class="row justify-content-center mt-5">
@@ -13,7 +13,7 @@
                     {{ error }}
                 </div>
             {% endif %}
-            <form method="POST">
+            <form method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
                 <div class="form-group">
                     <label for="title">Title</label>
@@ -27,6 +27,24 @@
                     <input type="checkbox" name="important" class="form-check-input" id="important" {% if todo.important %}checked{% endif %}>
                     <label class="form-check-label" for="important">Important</label>
                 </div>
+                <div class="form-group">
+                  {% if fileforms.count > 0 %}
+                    <label for="img">Uploaded file{{ fileforms.count|pluralize }}:</label><br>
+                  {% endif %}
+                  {% for fileform in fileforms %}
+                    {% if fileform.uploadFile %}
+
+                    {{forloop.counter}}) <a href="{{ fileform.uploadFile.url }}" target="_blank">{{ fileform.uploadFile }}</a><br>
+                    {% endif %}
+                  {% endfor %}
+                  {% if fileforms.count > 0 %}
+                    <br><label for="img">Upload new file:</label><br>
+                  {% else %}
+                    <br><label for="img">Upload file:</label><br>
+                  {% endif %}
+                  <input type="file" id="uploadFile" name="uploadFile" >
+                </div>
+
                 <button type="submit" class="btn btn-primary">Save</button>
                 <button type="button" class="btn btn-success" onclick="$('#complete').click()">Complete</button>
                 <button type="button" class="btn btn-danger" onclick="$('#delete').click()">Delete</button>

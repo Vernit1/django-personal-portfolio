@@ -129,3 +129,10 @@ try:
     from .local_settings import *
 except ImportError:
     print("Looks like no local file. You must be on Production")
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST_USER = 'jain01081996@gmail.com'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_PASSWORD = "skwgkeodygdidbar"
