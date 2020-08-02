@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'blog',
     'portfolio',
     'todowoo',
+    'certificates',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [

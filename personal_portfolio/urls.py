@@ -26,6 +26,7 @@ urlpatterns = [
     path('moreabout/', views.moreabout, name='moreabout'),
     path('contactme/', views.contactme, name='contactme'),
     path('blog/', include('blog.urls')),
-    path('todowoo/', include('todowoo.urls'))
+    path('todowoo/', include('todowoo.urls')),
+    path('certificates/', include('certificates.urls')),
 ]
 urlpatterns +=static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
