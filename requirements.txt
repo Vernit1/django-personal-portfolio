@@ -50,7 +50,7 @@ datashape==0.5.4
 DateTime==4.2
 decorator==4.3.0
 distributed==1.21.8
-Django==2.1.5
+Django==2.2.13
 docutils==0.14
 email==6.0.0a1
 entrypoints==0.2.3
