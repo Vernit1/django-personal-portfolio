@@ -4,5 +4,5 @@ from .models import Certificate
 from .serializers import CertificateSerializer
 
 class CertificateView(viewsets.ModelViewSet):
-	queryset = Certificate.objects.all()
+	queryset = Certificate.objects.all().order_by('-issuedDate')
 	serializer_class = CertificateSerializer

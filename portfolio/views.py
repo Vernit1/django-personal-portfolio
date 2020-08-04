@@ -4,6 +4,13 @@ from .forms import ContactFormView
 from django.core.mail import EmailMessage
 from django.core.mail import send_mail
 from django.template.loader import get_template
+import requests
+
+def certificates():
+    URLForAPI = "https://vernitjain.pythonanywhere.com/certificates/"
+    response = requests.get(url = URLForAPI)
+    certificate = response.json()
+    return certificate
 
 def home(request):
     projects = Project.objects.all()
@@ -15,7 +22,8 @@ def aboutme(request):
 def moreabout(request):
     projects = Project.objects.all()
     abouts = About.objects.all()
-    return render(request, 'portfolio/moreabout.html', {'abouts':abouts, 'projects':projects})
+    certificate = certificates()
+    return render(request, 'portfolio/moreabout.html', {'abouts':abouts, 'projects':projects, 'certificate': certificate})
 
 def contactme(request):
     if request.method=="GET":
