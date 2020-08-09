@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Project, About
+from .models import Project, About, Certificate
 from .forms import ContactFormView
 from django.core.mail import EmailMessage
 from django.core.mail import send_mail
@@ -7,14 +7,20 @@ from django.template.loader import get_template
 import requests
 
 def certificates():
-    URLForAPI = "https://vernitjain.pythonanywhere.com/certificates/"
-    certificate = ""
-    try:
-        response = requests.get(url = URLForAPI, timeout=0.1)
-        certificate = response.json()
-    except:
-        return certificate
+    certificate = Certificate.objects.filter(certificate = True).order_by('-issuedDate')
     return certificate
+    # URLForAPI = "https://vernitjain.pythonanywhere.com/certificates/"
+    # certificate = ""
+    # try:
+    #     response = requests.get(url = URLForAPI, timeout=0.1)
+    #     certificate = response.json()
+    # except:
+    #     return certificate
+    # return certificate
+
+def awards():
+    award = Certificate.objects.filter(award = True).order_by('-issuedDate')
+    return award
 
 def home(request):
     projects = Project.objects.all()
@@ -27,7 +33,8 @@ def moreabout(request):
     projects = Project.objects.all()
     abouts = About.objects.all()
     certificate = certificates()
-    return render(request, 'portfolio/moreabout.html', {'abouts':abouts, 'projects':projects, 'certificate': certificate})
+    award = awards()
+    return render(request, 'portfolio/moreabout.html', {'abouts':abouts, 'projects':projects, 'certificate': certificate, 'award':award})
 
 def contactme(request):
     if request.method=="GET":

@@ -411,8 +411,8 @@
               <article class="post-container">
                 <div class="post-thumb">
                   {% if cert.file %}
-                  <a target="_blank" href="{{ cert.file }}"class="d-block position-relative overflow-hidden">
-                    <img src="{{ cert.file }}" class="img-fluid" alt="certificate image">
+                  <a target="_blank" href="{{ cert.file.url }}"class="d-block position-relative overflow-hidden">
+                    <img src="{{ cert.file.url }}" class="img-fluid" alt="certificate image">
                   </a>
                   {% endif %}
                 </div>
@@ -437,6 +437,45 @@
         {% endif %}
 
         <!-- Certificate End -->
+
+        {% if award %}
+        <hr class="separator mt-1">
+        <!-- Award start -->
+        <div class="row" id="award" style="border:10px">
+            <div class="col-12">
+                <h3 class="text-uppercase pb-4 pb-sm-5 mb-3 mb-sm-0 text-left text-sm-center custom-title ft-wt-600">My Awards</h3>
+            </div>
+            {% for aw in award %}
+            <div class="col-12 col-md-6 col-lg-6 col-xl-4 mb-30 blog">
+              <article class="post-container">
+                <div class="post-thumb">
+                  {% if aw.file.url %}
+                  <a target="_blank" href="{{ aw.file.url }}"class="d-block position-relative overflow-hidden">
+                    <img src="{{ aw.file.url }}" class="img-fluid" alt="certificate image">
+                  </a>
+                  {% endif %}
+                </div>
+                <div class="post-content">
+                  <div class="entry-header">
+                    {% if aw.name %}
+                    <h3><a href="">{{ aw.name }}</a></h3>
+                    {% endif %}
+                    {% if aw.issuedby %}
+                    <h6>{{ aw.issuedby }}</h6>
+                    {% endif %}
+                    {% if aw.issuedDate %}
+                    <span class="date"><i class="fa fa-calendar"></i> {{aw.issuedDate}}</span>
+                    <!-- <span class="date"><i class="fa fa-calendar"></i> {{cert.issuedDate|date:'F jS Y'}}</span> -->
+                    {% endif %}
+                  </div>
+                </div>
+              </article>
+                </div>
+              {% endfor %}
+        </div>
+        {% endif %}
+        <!-- Award End -->
+
           <hr class="separator mt-1">
 
         <!-- Experience & Education Starts -->
@@ -451,25 +490,29 @@
                           <div class="icon">
                               <i class="fa fa-briefcase"></i>
                           </div>
-                          <span class="time open-sans-font text-uppercase">Mar 2019 - Present</span>
-                          <h5 class="poppins-font text-uppercase">Full stack developer<span class="place open-sans-font">TCS</span></h5>
-                          <p class="open-sans-font">Got promoted as a full stack developer in Python</p>
+                          <span class="time open-sans-font text-uppercase">July 2019 - Present</span>
+                          <h5 class="poppins-font text-uppercase">System Engineer<span class="place open-sans-font">TCS</span></h5>
+                          <p class="open-sans-font">Tata Consultancy Services, Delhi, India</p>
                       </li>
                       <li>
                           <div class="icon">
                               <i class="fa fa-briefcase"></i>
                           </div>
-                          <span class="time open-sans-font text-uppercase">Jan 2018 - Mar 2019</span>
-                          <h5 class="poppins-font text-uppercase">Backend Developer<span class="place open-sans-font">TCS</span></h5>
-                          <p class="open-sans-font">Got promoted as Backend Developer in Python and Java</p>
+                          <span class="time open-sans-font text-uppercase">Jan 2018 - July 2019</span>
+                          <h5 class="poppins-font text-uppercase">Ass. System Engineer<span class="place open-sans-font">TCS</span></h5>
+                          <p class="open-sans-font">Tata Consultancy Services, Mumbai, India</p>
                       </li>
                         <li>
                             <div class="icon">
                                 <i class="fa fa-briefcase"></i>
                             </div>
                             <span class="time open-sans-font text-uppercase">July 2017 - Dec 2017</span>
-                            <h5 class="poppins-font text-uppercase">Trainee<span class="place open-sans-font">TCS</span></h5>
-                            <p class="open-sans-font">Got training in TCS in Python, Java, AI</p>
+                            <h5 class="poppins-font text-uppercase">Graduate Trainee<span class="place open-sans-font">TCS</span></h5>
+                            <p class="open-sans-font">Tata Consultancy Services, Chennai, India</p>
+                            <!-- <br>
+                              Trained in Machine learning and API<br>
+                              Applied machine learning in fetching the concentration level of mind while doing something -->
+
                         </li>
 
                     </ul>
@@ -483,25 +526,24 @@
                                 <i class="fa fa-graduation-cap"></i>
                             </div>
                             <span class="time open-sans-font text-uppercase">2020</span>
-                            <h5 class="poppins-font text-uppercase">Master Degree <span class="place open-sans-font">Sastra University</span></h5>
-                            <!-- <p class="open-sans-font">Completed MCA</p> -->
+                            <h5 class="poppins-font text-uppercase">Master Degree <span class="place open-sans-font">Sastra University, chennai</span></h5>
+                            <p class="open-sans-font">Post graduated in Work-integrated program mode</p>
                         </li>
                         <li>
                             <div class="icon">
                                 <i class="fa fa-graduation-cap"></i>
                             </div>
                             <span class="time open-sans-font text-uppercase">2017</span>
-                            <h5 class="poppins-font text-uppercase">Bahelor Degree <span class="place open-sans-font">IIMT</span></h5>
-                            <!-- <p class="open-sans-font">Lorem ipsum dolor sit amet, consectetur elit, sed do eiusmod tempor incididunt ut adipisicing</p> -->
+                            <h5 class="poppins-font text-uppercase">Bahelor Degree <span class="place open-sans-font">IIMT, Meerut</span></h5>
+                            <p class="open-sans-font">Graduated in computer application</p>
                         </li>
-                        <li>
+                        <!-- <li>
                             <div class="icon">
                                 <i class="fa fa-graduation-cap"></i>
                             </div>
                             <span class="time open-sans-font text-uppercase">2012</span>
                             <h5 class="poppins-font text-uppercase">Intermediate Degree <span class="place open-sans-font">Golden Heart Academy</span></h5>
-                            <!-- <p class="open-sans-font">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor ut labore</p> -->
-                        </li>
+                        </li> -->
                     </ul>
                 </div>
             </div>
