@@ -8,8 +8,12 @@ import requests
 
 def certificates():
     URLForAPI = "https://vernitjain.pythonanywhere.com/certificates/"
-    response = requests.get(url = URLForAPI)
-    certificate = response.json()
+    certificate = ""
+    try:
+        response = requests.get(url = URLForAPI, timeout=0.1)
+        certificate = response.json()
+    except:
+        return certificate
     return certificate
 
 def home(request):
