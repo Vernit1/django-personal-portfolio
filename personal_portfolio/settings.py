@@ -24,7 +24,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'j$1eg2#khdruj__s34$vx0+m2_#q8=n68o!y7_(%)^&q&oteb&'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['vernitjain.pythonanywhere.com', 'vernitjain.herokuapp.com']
 
