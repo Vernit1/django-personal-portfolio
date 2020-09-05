@@ -1,0 +1,57 @@
+{% extends "keepnote/base.html" %}
+
+<!doctype html>
+
+
+<html lang="en">
+  <head>
+    {% load static %}
+    <link href="{% static 'keepnote/css/custom.css' %}" media="screen" rel="stylesheet" type="text/css">
+    <!-- <link rel="stylesheet" href="{% static 'keepnote/css/custom.css' %}"> -->
+    <style>
+        body {<br />
+          background: rgba(222,222,222,1);<br />
+          margin: 20px;<br />
+        }<br />
+    </style>
+  </head>
+  <body>
+    {% if user.is_authenticated %}
+    {{user}}
+    {% endif %}
+    <form method="POST" action="">
+      {% csrf_token %}
+      {% for note in notes %}
+        {% if note.title is None %}
+          <p></p>
+        {% else %}
+          <p><b>{{ note.title }}</b></p>
+        {% endif %}
+
+        {% if note.description is None %}
+          <p></p>
+        {% else %}
+          <p><b>{{ note.description }}</b></p>
+        {% endif %}
+      {% endfor %}
+
+      {% if error %}
+        <div class="alert alert-danger" role="alert">
+            {{ error }}
+        </div>
+      {% endif %}
+      <div class="form-group">
+          <label for="title">Title</label>
+          <input type="text" name="title" class="form-control" id="title">
+      </div>
+      <div class="form-group">
+          <label for="memo">Description</label>
+          <textarea name="description" class="form-control" id="description" ></textarea>
+      </div>
+      <div class="LwH6nd notranslate IZ65Hb-YPqjbf r4nke-YPqjbf">Title</div>
+      <div contenteditable="true" aria-multiline="true" role="textbox" class="notranslate IZ65Hb-YPqjbf fmcmS-x3Eknd r4nke-YPqjbf" tabindex="0" style="" aria-label="Title" spellcheck="true"></div>
+      <div class="LwH6nd notranslate IZ65Hb-YPqjbf h1U9Be-YPqjbf">Take a note…</div>
+      <input type="submit" value="Add note">
+    </form>
+  </body>
+</html>
