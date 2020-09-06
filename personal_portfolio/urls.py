@@ -15,5 +15,8 @@ urlpatterns = [
     path('todowoo/', include('todowoo.urls')),
     path('certificates/', include('certificates.urls')),
     path('accounts/', include('allauth.urls')),
+
+    #api
+    path('todowooapi/', include('todowooapi.urls')),
 ]
 urlpatterns +=static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
